@@ -1,0 +1,176 @@
+.auth-content {
+  height: 100%;
+  background: url(../../img/login-bg.png);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-block {
+  position: relative;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  overflow: hidden;
+  transform-origin: top;
+  transition: 1s transform, 1s opacity;
+  transform: perspective(600px) rotateX(-50deg);
+  opacity: 0;
+  font-family: Poppins, Robot, Arial, Helvetica, sans-serif;
+}
+
+.auth-block.normal {
+  transform: none;
+  opacity: 1;
+}
+
+.auth-title {
+  font-size: 32px;
+  text-align: center;
+  padding: 50px 0;
+  font-weight: bold;
+  color: #47555e;
+}
+
+.auth-title span {
+  vertical-align: middle;
+}
+
+.dash {
+  font-size: 40px;
+  color: #ccc;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.input-block {
+  text-align: center;
+  color: #47555e;
+  margin-bottom: 50px;
+  width: 400px;
+  padding: 0 80px;
+}
+
+.input-block .inner {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 100%;
+}
+
+.my-input {
+  border: none;
+  background: none;
+  border-bottom: 2px solid #ccc;
+  padding: 10px;
+  width: 100%;
+}
+
+.input-placeholder {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transform-origin: bottom left;
+  transition: 0.4s top cubic-bezier(0.4, 0, 0.2, 1),
+    0.4s color cubic-bezier(0.4, 0, 0.2, 1),
+    0.4s font-size cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  color: #999;
+}
+
+.input-border {
+  height: 2px;
+  background: var(--lg-blue);
+  margin-top: -2px;
+  position: relative;
+  left: 50%;
+  width: 0;
+  transition: 0.4s left cubic-bezier(0.4, 0, 0.2, 1),
+    0.4s width cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.my-input:focus {
+  outline: none;
+}
+
+.my-input:focus ~ .input-placeholder,
+.my-input.filled ~ .input-placeholder {
+  top: -10px;
+  color: var(--lg-blue);
+  font-size: 12px;
+}
+
+.my-input:focus ~ .input-border,
+.my-input.filled ~ .input-border {
+  left: 0;
+  width: 100%;
+}
+
+.submit-btn {
+  display: block;
+  background: none;
+  border: none;
+  text-align: center;
+  width: 100%;
+  padding: 15px 0;
+  background: var(--brown);
+  color: white;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.2s opacity;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+.auth-link-block {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.auth-link-block a {
+  padding: 10px;
+  border: 2px solid var(--brown);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: .2s background, .2s color;
+}
+
+.auth-link-block a:hover {
+  background: var(--brown);
+  color: white;
+}
+
+.auth-content.register .auth-title {
+  padding-bottom: 20px;
+}
+
+.auth-content.register .input-block {
+  margin-bottom: 25px;
+}
+
+.input-block.input-block.invalid .my-input {
+  border-bottom-color: crimson;
+}
+
+.input-block.input-block.invalid .input-border {
+  background: crimson;
+}
+.input-block.invalid .input-placeholder {
+  color: crimson;
+}
+
+.invalid-message {
+  display: none;
+  text-align: right;
+  margin-left: 5px;
+  margin-top: 5px;
+  color: crimson;
+  font-size: 11px;
+}
+
+.input-block.invalid .invalid-message {
+  display: block;
+}
+

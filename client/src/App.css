@@ -1,3 +1,5 @@
-body {
-  background: url(img/login-bg.png);
-}
+@import "./style/setup/normalize.css";
+@import "./style/setup/variables.css";
+@import "./style/setup/adjustments.css";
+@import "./style/setup/fonts.css";
+@import "./style/auth/login.css";
