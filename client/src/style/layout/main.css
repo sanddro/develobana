@@ -1,0 +1,262 @@
+.news-page {
+    background: var(--main-bg);
+    min-height: 100%;
+}
+
+.add-news-pre {
+    text-align: center;
+    padding: 160px;
+    background-image: url(../../img/add-news-bg.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.add-news-btn {
+    background: var(--brown);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 11px;
+}
+
+.news-list {
+    padding: 0 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.news-item {
+    width: 28%;
+    margin-right: 6%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: .2s transform;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.news-item:hover {
+    transform: scale(1.05);
+}
+
+.news-item:nth-child(3n) {
+    margin-right: 0;
+}
+
+.news-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rates-block {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.rates-block .fa {
+    color: #ccc;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.rates-block .up {
+    margin-right: 10px;
+}
+
+.author-block {
+    display: flex;
+    align-items: center;
+}
+
+.author-avatar {
+    border:1px solid #ccc;
+    width: 30px;
+    height: 30px;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.news-item-bottom {
+    padding: 5px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.4);
+    margin-top: 5px;
+}
+
+.news-item-poster {
+    background-image: url(../../img/add-news-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px;
+}
+
+.news-item-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.news-item-title:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    padding: 10px 0;
+    text-align: center;
+    background: var(--brown);
+    color: white;
+}
+
+.news-form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    cursor: pointer;
+    font-size: 25px;
+    color: #777;
+    transform: translateX(-50%);
+}
+
+.close-btn:hover {
+    color: black;
+}
+
+.news-form {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    color: #222;
+    position: relative;
+}
+
+.news-form .author-avatar {
+    width: 60px;
+    height: 50px;
+}
+
+.news-form-top {
+    padding: 8px 20px;
+    border-bottom: 1px solid #ccc;
+    width: 500px;
+    font-size: 12px;
+}
+
+.news-form-top .fa {
+    margin-right: 5px;
+}
+
+.news-form-middle {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.description-input {
+    padding: 20px 10px;
+    width: 100%;
+    background: none;
+    border: 1px solid transparent;
+}
+
+.description-input:focus {
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+.news-form-bottom {
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.news-form-bottom-btns {
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+}
+
+.news-form-bottom-btn {
+    background: #eee;
+    border-radius: 30px;
+    margin-right: 20px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    color: #666;
+    cursor: pointer;
+    transition: .2s color, .2s background;
+}
+
+.news-form-bottom-btn:hover {
+    color: #eee;
+    background: #666;
+}
+
+.news-form-bottom-btn .fa {
+    margin-right: 5px;
+}
+
+.news-form-submit {
+    text-align: center;
+    padding: 10px;
+    background: var(--brown);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.profile-block {
+    background: var(--brown);
+    padding-top: 40px;
+}
+
+.profile-info {
+    width: 500px;
+    margin: 0 auto;
+    color: white;
+}
+
+.overview {
+    display: flex;
+    align-items: center;
+}
+
+.overview .avatar-block {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-right: 40px;
+}
+
+.overview .avatar-block:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: -10px;
+    left: -10px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+
+.info .name {
+    font-size: 25px;
+}
+
+.info .location {
+    font-size: 12px;
+}
+

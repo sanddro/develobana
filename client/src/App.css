@@ -3,3 +3,5 @@
 @import "./style/setup/adjustments.css";
 @import "./style/setup/fonts.css";
 @import "./style/auth/login.css";
+@import "./style/layout/header.css";
+@import "./style/layout/main.css";

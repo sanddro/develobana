@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { login } from '../../redux/actions/auth';
+import { connect } from 'react-redux';
+import { currentUser } from "../../helpers";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(){
     super();
     this.state = {
@@ -13,25 +16,19 @@ export default class Login extends Component {
     this.submitLoginForm = this.submitLoginForm.bind(this);
   }
 
+  componentWillReceiveProps(){
+    if(currentUser()){
+      this.props.history.push('/news');
+    }
+  }
+
   async submitLoginForm(e){
     e.preventDefault();
     let loginInfo = {
       mail: this.state.mail,
       password: this.state.password,
     }
-    const response = await fetch('/api/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(loginInfo)
-    });
-    const data = await response.json();
-    if(!response.ok){
-      this.setState({ errors: data });
-    } else {
-      this.setState({ errors: {} })
-    }
+    this.props.login(loginInfo);
   }
 
   onChange(e) {
@@ -41,6 +38,8 @@ export default class Login extends Component {
   }
 
   render() {
+    const errors = this.props.errors;
+
     return (
       <div className="auth-content">
         <div className="auth-link-block">
@@ -52,7 +51,7 @@ export default class Login extends Component {
           </div>
           <div className="auth-form">
             <form onSubmit={this.submitLoginForm}>
-            <div className={ "input-block" + (this.state.errors.mail ? ' invalid' : '') }>
+            <div className={ "input-block" + (errors.mail ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="text"
@@ -64,10 +63,10 @@ export default class Login extends Component {
                   />
                   <span className="input-placeholder">Mail</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.mail}</div>
+                  <div className="invalid-message">{errors.mail}</div>
                 </div>
               </div>
-              <div className={ "input-block" + (this.state.errors.password ? ' invalid' : '') }>
+              <div className={ "input-block" + (errors.password ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="password"
@@ -79,7 +78,7 @@ export default class Login extends Component {
                   />
                   <span className="input-placeholder">Password</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.password}</div>
+                  <div className="invalid-message">{errors.password}</div>
                 </div>
               </div>
               <div className="auth-btn-block">
@@ -92,3 +91,10 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth, errors }) => ({
+  auth,
+  errors
+});
+
+export default connect(mapStateToProps, { login })(Login);
