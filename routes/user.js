@@ -11,12 +11,12 @@ const router = Router();
 router.post('/register', async (req, res) => {
     let { isValid, errors } = validateRegister(req.body);
     if(!isValid){
-        return res.status(404).send(errors);
+        return res.status(404).json(errors);
     }
     const exists = await User.findOne({mail: req.body.mail});
     if(exists){
         errors.mail = `User with mail ${req.body.mail} already exists`;
-        return res.status(404).send(errors);
+        return res.status(404).json(errors);
     }
 
     const salt = bcrypt.genSaltSync(10);
@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
         mail: req.body.mail,
     });
     let user = await newUser.save();
-    res.send(user);
+    res.json(user);
 });
 
 router.post('/login', async (req, res) => {

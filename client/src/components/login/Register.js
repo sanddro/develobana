@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { register } from '../../redux/actions/auth';
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(){
     super();
     this.state = {
@@ -25,20 +27,8 @@ export default class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     }
-    const response = await fetch('/api/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(registerInfo)
-    });
-    const data = await response.json();
-    if(!response.ok){
-      this.setState({ errors: data });
-    } else {
-      this.setState({ errors: {} })
-    }
 
+    this.props.register(registerInfo, this.props.history);
   }
 
   onChange(e) {
@@ -48,6 +38,8 @@ export default class Register extends Component {
   }
 
   render() {
+    const errors = this.props.errors || {};
+
     return (
       <div className="auth-content register">
         <div className="auth-link-block">
@@ -59,7 +51,7 @@ export default class Register extends Component {
           </div>
           <div className="auth-form">
             <form onSubmit={this.submitRegisterForm}>
-            <div className={ "input-block" + (this.state.errors.firstname ? ' invalid' : '') }>
+            <div className={ "input-block" + (errors.firstname ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="text"
@@ -71,10 +63,10 @@ export default class Register extends Component {
                   />
                   <span className="input-placeholder">Firstname</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.firstname}</div>
+                  <div className="invalid-message">{errors.firstname}</div>
                 </div>
               </div>
-              <div className={ "input-block" + (this.state.errors.lastname ? ' invalid' : '') }>
+              <div className={ "input-block" + (errors.lastname ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="text"
@@ -86,11 +78,11 @@ export default class Register extends Component {
                   />
                   <span className="input-placeholder">Lastname</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.lastname}</div>
+                  <div className="invalid-message">{errors.lastname}</div>
 
                 </div>
               </div>
-              <div className={ "input-block" + (this.state.errors.mail ? ' invalid' : '') }>
+              <div className={ "input-block" + (errors.mail ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="text"
@@ -102,10 +94,10 @@ export default class Register extends Component {
                   />
                   <span className="input-placeholder">Mail</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.mail}</div>
+                  <div className="invalid-message">{errors.mail}</div>
                 </div>
               </div>
-              <div className={ "input-block" + (this.state.errors.password ? ' invalid' : '') }>
+              <div className={ "input-block" + (errors.password ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="password"
@@ -117,10 +109,10 @@ export default class Register extends Component {
                   />
                   <span className="input-placeholder">Password</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.password}</div>
+                  <div className="invalid-message">{errors.password}</div>
                 </div>
               </div>
-              <div className={ "input-block" + (this.state.errors.password2 ? ' invalid' : '') }>
+              <div className={ "input-block" + (errors.password2 ? ' invalid' : '') }>
                 <div className="inner">
                   <input
                     type="password"
@@ -132,11 +124,11 @@ export default class Register extends Component {
                   />
                   <span className="input-placeholder">Confirm Password</span>
                   <div className="input-border" />
-                  <div className="invalid-message">{this.state.errors.password2}</div>
+                  <div className="invalid-message">{errors.password2}</div>
                 </div>
               </div>
               <div className="auth-btn-block">
-                <input type="submit" value="Log in" className="submit-btn" />
+                <input type="submit" value="Register" className="submit-btn" />
               </div>
             </form>
           </div>
@@ -145,3 +137,10 @@ export default class Register extends Component {
     );
   }
 }
+
+const mapStateToProps = ({auth, errors}) => ({
+  auth,
+  errors
+});
+
+export default  connect(mapStateToProps, { register })(withRouter(Register));
